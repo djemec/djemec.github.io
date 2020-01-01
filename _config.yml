@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Domen Jemec"
-  avatar           : #"profile.png"
+  avatar           : "profile.png"
   bio              : "Focused on creating delightful products from bleeding edge technologies"
   location         : "San Francisco, CA, USA"
   employer         :
