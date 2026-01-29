@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='Domen Jemec — technical product leader in life sciences, health, and AI.' />
+  <title>Domen Jemec | Product × Life Sciences × AI</title>
+  <style>
+    :root{
+      --bg:#070a13;
+      --panel:rgba(255,255,255,.035);
+      --panel2:rgba(255,255,255,.022);
+      --text:#eef2fb;
+      --muted:#a7b0c6;
+      --hair:rgba(255,255,255,.10);
+      --hair2:rgba(255,255,255,.14);
+      --accent:#3b82f6;
+      --accent2:#d6b15d;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --shadow2: 0 10px 28px rgba(0,0,0,.30);
+      --radius: 18px;
+      --radius2: 24px;
+      --maxw: 1080px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#fbfcff;
+        --panel:rgba(11,16,35,.035);
+        --panel2:rgba(11,16,35,.025);
+        --text:#0b1023;
+        --muted:#3f4b63;
+        --hair:rgba(11,16,35,.10);
+        --hair2:rgba(11,16,35,.14);
+        --shadow: 0 18px 45px rgba(11,16,35,.10);
+        --shadow2: 0 10px 26px rgba(11,16,35,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.45;
+      background: var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:26px 18px 64px}
+
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      background: rgba(7,10,19,.88);
+      border-bottom: 1px solid var(--hair);
+      backdrop-filter: blur(10px);
+    }
+    @media (prefers-color-scheme: light){
+      .topbar{background: rgba(251,252,255,.92)}
+    }
+    .nav{
+      max-width:var(--maxw); margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{display:flex; align-items:baseline; gap:10px; letter-spacing:.2px}
+    .brand .name{font-weight:750}
+    .brand .tag{font-size:13px; color:var(--muted)}
+
+    .navright{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
+      font-size:13px; color:var(--muted);
+      padding:6px 10px; border-radius:999px;
+    }
+    .navlinks a:hover{color:var(--text); text-decoration:none; background: rgba(255,255,255,.05)}
+    @media (prefers-color-scheme: light){
+      .navlinks a:hover{background: rgba(11,16,35,.05)}
+    }
+
+    .iconlinks{display:flex; gap:8px; align-items:center}
+    .iconbtn{
+      width:36px; height:36px;
+      border-radius:999px;
+      border:1px solid var(--hair2);
+      background: rgba(255,255,255,.02);
+      display:inline-flex; align-items:center; justify-content:center;
+      cursor:pointer;
+    }
+    @media (prefers-color-scheme: light){
+      .iconbtn{background: rgba(11,16,35,.015)}
+    }
+    .iconbtn:hover{text-decoration:none; filter:brightness(1.07)}
+    .icon{width:17px; height:17px; opacity:.92}
+    .sr{position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden}
+
+    .hero{
+      padding:26px 0 8px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){.hero{grid-template-columns: 1fr; padding-top:18px}}
+
+    .card{
+      background: rgba(255,255,255,.02);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+    }
+    @media (prefers-color-scheme: light){
+      .card{background: #fff}
+    }
+
+    .heroMain{padding:22px 22px 18px}
+    .kicker{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.45px;
+    }
+    h1{
+      margin:10px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.9px;
+    }
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{margin:0; font-size:16px; color:var(--muted); max-width:72ch}
+
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .chip{
+      font-size:12px;
+      padding:7px 11px;
+      border-radius:999px;
+      background: rgba(59,130,246,.12);
+      color: var(--text);
+    }
+    .chip.alt{background: rgba(255,255,255,.06)}
+    @media (prefers-color-scheme: light){
+      .chip{background: rgba(59,130,246,.10); color: var(--text)}
+      .chip.alt{background: rgba(11,16,35,.04)}
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    @media (max-width: 920px){.metrics{grid-template-columns: 1fr}}
+    .metric{
+      padding:12px 12px 10px;
+      border-radius:16px;
+      background: var(--panel);
+      box-shadow: var(--shadow2);
+    }
+    .metric .big{font-size:18px; font-weight:750; letter-spacing:-.2px}
+    .metric .small{font-size:12px; color:var(--muted); margin-top:2px}
+
+    .side{padding:18px 18px 16px; display:flex; flex-direction:column; gap:14px}
+    .side h2{margin:0; font-size:13px; color:var(--muted); font-weight:650; letter-spacing:.2px}
+
+    .callouts{display:grid; gap:10px; margin-top:10px}
+    .callout{
+      border-radius:16px;
+      padding:12px 12px 10px;
+      background: var(--panel);
+      box-shadow: var(--shadow2);
+    }
+    .callout .top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .callout .title{font-weight:750}
+    .badge{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background: rgba(214,177,93,.18);
+      color: var(--text);
+    }
+    @media (prefers-color-scheme: light){
+      .badge{background: rgba(214,177,93,.14)}
+    }
+    .callout .desc{margin-top:6px; font-size:13px; color:var(--muted)}
+    .callout a{display:block}
+    .callout a:hover{text-decoration:none}
+    .callout a:hover .title{text-decoration:underline}
+
+    section{padding-top:34px}
+    .sectionTitle{margin:0 0 10px; font-size:18px; letter-spacing:-.2px}
+    .sectionDesc{margin:0 0 14px; color:var(--muted); max-width:86ch}
+
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
+    .span6{grid-column: span 6}
+    .span4{grid-column: span 4}
+    .span8{grid-column: span 8}
+    .span12{grid-column: span 12}
+    @media (max-width: 920px){.span6,.span4,.span8{grid-column: span 12}}
+
+    .panel{
+      padding:16px 16px 14px;
+      border-radius:var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow2);
+    }
+    .panel h3{margin:0 0 6px; font-size:15px}
+    .panel .meta{font-size:12px; color:var(--muted); font-family:var(--mono)}
+    .panel p{margin:10px 0 0; color:var(--muted); font-size:14px}
+    .panel .links{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      display:inline-flex; align-items:center; gap:7px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid transparent;
+      font-size:12px;
+      color: var(--text);
+    }
+    @media (prefers-color-scheme: light){
+      .pill{background: rgba(11,16,35,.04); color: var(--text)}
+    }
+    .pill:hover{text-decoration:none; border-color: var(--hair)}
+    .pill svg{width:14px; height:14px; opacity:.9}
+
+    .timeline{display:flex; flex-direction:column; gap:10px}
+    .item{
+      padding:14px 14px 12px;
+      border-radius:18px;
+      background: var(--panel);
+      box-shadow: var(--shadow2);
+    }
+    .item .head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .item .role{font-weight:750}
+    .item .org{color:var(--muted)}
+    .item ul{margin:10px 0 0 18px; padding:0; color:var(--muted); font-size:14px}
+    .item li{margin:6px 0}
+
+    .twocol{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 920px){.twocol{grid-template-columns: 1fr}}
+
+    .footer{
+      margin-top:48px;
+      padding-top:16px;
+      border-top:1px solid var(--hair);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .emailBlock{
+      display:none;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      background: var(--panel2);
+      border:1px solid transparent;
+    }
+    .emailBlock .label{font-family:var(--mono); font-size:12px; color:var(--muted)}
+    .emailBlock .value{margin-top:6px; font-size:13px}
+  </style>
+</head>
+<body>
+  <div class='topbar'>
+    <div class='nav'>
+      <div class='brand'>
+        <div class='name'>Domen Jemec</div>
+        <div class='tag'>Product × Life Sciences × AI</div>
+      </div>
+
+      <div class='navright'>
+        <div class='navlinks'>
+          <a href='#work'>Work</a>
+          <a href='#experience'>Experience</a>
+          <a href='#projects'>Latest projects</a>
+          <a href='#talks'>Talks</a>
+          <a href='#contact'>Contact</a>
+        </div>
+
+        <div class='iconlinks' aria-label='Social links'>
+          <a class='iconbtn' href='https://www.linkedin.com/in/domenjemec/' target='_blank' rel='noreferrer' aria-label='LinkedIn'>
+            <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+              <path d='M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 23.5h4V7.98h-4V23.5ZM8.5 7.98h3.83v2.12h.05c.53-1.01 1.83-2.07 3.77-2.07 4.03 0 4.78 2.65 4.78 6.09v9.38h-4v-8.32c0-1.98-.04-4.52-2.75-4.52-2.75 0-3.17 2.15-3.17 4.38v8.46h-4V7.98Z'/>
+            </svg>
+          </a>
+          <a class='iconbtn' href='https://github.com/djemec' target='_blank' rel='noreferrer' aria-label='GitHub'>
+            <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+              <path d='M12 .296c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 .6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.236 1.839 1.236 1.07 1.834 2.807 1.305 3.492.998 .108-.776 .418-1.305 .762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31 .469-2.381 1.236-3.221 -.123-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23 .957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .653 1.653 .24 2.874 .117 3.176 .77 .84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921 .43 .372 .823 1.102 .823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319 .216 .694 .825 .576C20.565 21.79 24 17.29 24 12.296c0-6.627-5.373-12-12-12'/>
+            </svg>
+          </a>
+          <a class='iconbtn' href='https://x.com/domenjemec' target='_blank' rel='noreferrer' aria-label='Twitter / X'>
+            <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+              <path d='M18.9 2H22l-6.78 7.75L23 22h-6.2l-4.86-6.65L6.1 22H3l7.26-8.3L1.5 2h6.35l4.4 6.05L18.9 2Zm-1.09 18h1.72L7.08 3.92H5.23L17.81 20Z'/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class='wrap' id='top'>
+    <div class='hero'>
+      <div class='card heroMain'>
+        <div class='kicker'>Technical product leadership • life sciences, health, and AI</div>
+        <h1>Building market-ready platforms and AI tools for biology and healthcare.</h1>
+        <p class='sub'>
+          Technical product leader delivering in-silico drug discovery tooling, genomics research platforms, agentic applications,
+          and NLP systems for healthcare with a track record managing multi-million-dollar investments and leading research-first cross-functional teams.
+        </p>
+        <div class='chips' aria-label='Focus areas'>
+          <div class='chip'>In-silico drug discovery</div>
+          <div class='chip alt'>Genomics platforms</div>
+          <div class='chip'>LLMs & agents</div>
+          <div class='chip alt'>NLP for healthcare</div>
+          <div class='chip'>Exabyte-scale data</div>
+        </div>
+
+        <div class='metrics' aria-label='Selected impact metrics'>
+          <div class='metric'>
+            <div class='big'>$10M+ / yr</div>
+            <div class='small'>budget ownership across multiple products</div>
+          </div>
+          <div class='metric'>
+            <div class='big'>$10M+</div>
+            <div class='small'>pipeline built from zero-to-production customers</div>
+          </div>
+          <div class='metric'>
+            <div class='big'>2× ARR</div>
+            <div class='small'>revenue turnaround within one year</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class='card side' aria-label='Contact and latest projects'>
+        <div>
+          <h2>Contact</h2>
+          <div class='iconlinks' style='margin-top:10px' aria-label='Email and social links'>
+            <button class='iconbtn' id='emailIcon1' type='button' aria-label='Reveal email'>
+              <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>
+                <path d='M4 4h16v16H4z'></path>
+                <path d='M22 6l-10 7L2 6'></path>
+              </svg>
+            </button>
+            <a class='iconbtn' href='https://www.linkedin.com/in/domenjemec/' target='_blank' rel='noreferrer' aria-label='LinkedIn'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 23.5h4V7.98h-4V23.5ZM8.5 7.98h3.83v2.12h.05c.53-1.01 1.83-2.07 3.77-2.07 4.03 0 4.78 2.65 4.78 6.09v9.38h-4v-8.32c0-1.98-.04-4.52-2.75-4.52-2.75 0-3.17 2.15-3.17 4.38v8.46h-4V7.98Z'/>
+              </svg>
+            </a>
+            <a class='iconbtn' href='https://github.com/djemec' target='_blank' rel='noreferrer' aria-label='GitHub'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M12 .296c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 .6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.236 1.839 1.236 1.07 1.834 2.807 1.305 3.492.998 .108-.776 .418-1.305 .762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31 .469-2.381 1.236-3.221 -.123-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23 .957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .653 1.653 .24 2.874 .117 3.176 .77 .84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921 .43 .372 .823 1.102 .823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319 .216 .694 .825 .576C20.565 21.79 24 17.29 24 12.296c0-6.627-5.373-12-12-12'/>
+              </svg>
+            </a>
+            <a class='iconbtn' href='https://x.com/domenjemec' target='_blank' rel='noreferrer' aria-label='Twitter / X'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M18.9 2H22l-6.78 7.75L23 22h-6.2l-4.86-6.65L6.1 22H3l7.26-8.3L1.5 2h6.35l4.4 6.05L18.9 2Zm-1.09 18h1.72L7.08 3.92H5.23L17.81 20Z'/>
+              </svg>
+            </a>
+          </div>
+
+          <div class='emailBlock' id='emailBlock1'>
+            <div class='label'>Email</div>
+            <div class='value'><a href='mailto:domen.jemec@gmail.com'>domen.jemec@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style='margin-top:4px'>Latest projects</h2>
+          <div class='callouts' aria-label='Latest project callouts'>
+            <div class='callout'>
+              <a href='https://gptomics.com' target='_blank' rel='noreferrer'>
+                <div class='top'>
+                  <div class='title'>GPTomics.com</div>
+                </div>
+                <div class='desc'>Research lab focused on applying modern AI to bioinformatics.</div>
+              </a>
+            </div>
+            <div class='callout'>
+              <a href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>
+                <div class='top'>
+                  <div class='title'>GymGen.xyz</div>
+                </div>
+                <div class='desc'>Agentic personal trainer app using multimodal models for personalized training content.</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id='work'>
+      <h2 class='sectionTitle'>Featured work</h2>
+      <p class='sectionDesc'>Representative products and programs with outcomes.</p>
+
+      <div class='grid'>
+        <div class='panel span4'>
+          <h3><a href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'>BioJEPA</a></h3>
+          <div class='meta'>Independent • cell-state modeling • perturbation simulation</div>
+          <p>JEPA-based model exploring whether latent structure can simulate cell-state changes from chemical and molecular perturbations.</p>
+          <div class='links'>
+            <a class='pill' href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'><svg viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'><path d='M12 .296c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 .6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.236 1.839 1.236 1.07 1.834 2.807 1.305 3.492.998 .108-.776 .418-1.305 .762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31 .469-2.381 1.236-3.221 -.123-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23 .957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .653 1.653 .24 2.874 .117 3.176 .77 .84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921 .43 .372 .823 1.102 .823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319 .216 .694 .825 .576C20.565 21.79 24 17.29 24 12.296c0-6.627-5.373-12-12-12'/></svg>GitHub</a>
+          </div>
+        </div>
+
+        <div class='panel span4'>
+          <h3><a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>BioSkills</a></h3>
+          <div class='meta'>Independent • agent tooling • reproducible bioinformatics</div>
+          <p>Skill library to help coding agents apply established bioinformatics tools correctly and predictably.</p>
+          <div class='links'>
+            <a class='pill' href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'><svg viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'><path d='M12 .296c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 .6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.236 1.839 1.236 1.07 1.834 2.807 1.305 3.492.998 .108-.776 .418-1.305 .762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31 .469-2.381 1.236-3.221 -.123-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23 .957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .653 1.653 .24 2.874 .117 3.176 .77 .84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921 .43 .372 .823 1.102 .823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319 .216 .694 .825 .576C20.565 21.79 24 17.29 24 12.296c0-6.627-5.373-12-12-12'/></svg>GitHub</a>
+          </div>
+        </div>
+
+        <div class='panel span4'>
+          <h3><a href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>GymGen</a></h3>
+          <div class='meta'>Independent • agentic consumer app • multimodal</div>
+          <p>Agentic personal trainer app using text, voice, and video models to generate personalized training content and programming.</p>
+          <div class='links'>
+            <a class='pill' href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>
+              <svg viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'><path d='M10 13a5 5 0 0 1 0-7l1.41-1.41a5 5 0 0 1 7.07 7.07L17.07 13a5 5 0 0 1-7.07 0l-.36-.36 1.41-1.41.36.36a3 3 0 0 0 4.24 0l1.41-1.41a3 3 0 0 0-4.24-4.24L11.41 7.4a3 3 0 0 0 0 4.24l.36.36-1.41 1.41-.36-.36ZM14 11a5 5 0 0 1 0 7l-1.41 1.41a5 5 0 0 1-7.07-7.07L6.93 11a5 5 0 0 1 7.07 0l.36.36-1.41 1.41-.36-.36a3 3 0 0 0-4.24 0L6.93 14a3 3 0 0 0 4.24 4.24l1.41-1.41a3 3 0 0 0 0-4.24l-.36-.36 1.41-1.41.36.36Z'/></svg>
+              Site
+            </a>
+          </div>
+        </div>
+
+        <div class='panel span6'>
+          <h3>Next Generation Drug Discovery Toolkit (Gated Preview)</h3>
+          <div class='meta'>AWS • life sciences product leadership</div>
+          <p>Owned ideation through launch; translated in-silico drug discovery algorithms into accessible tooling for bench scientists. Led LLM/agent integration and shipped a preview with thousands of users.</p>
+        </div>
+
+        <div class='panel span6'>
+          <h3>HealthOmics: Molecular storage, compute, and AI</h3>
+          <div class='meta'>AWS • genomics platform</div>
+          <p>Led multi-million-dollar investment; built a $10M+ pipeline post-launch across population sequencing, academia, pharma, and clinical diagnostics. Delivered platform features spanning storage, workflow integration, and scalable analysis.</p>
+        </div>
+
+        <div class='panel span6'>
+          <h3>Healthcare NLP platform</h3>
+          <div class='meta'>AWS • production NLP</div>
+          <p>Owned large annual investment in health-text NLP. Stabilized declining revenue and doubled ARR, while instituting evaluation and drift practices to maintain quality.</p>
+        </div>
+
+        <div class='panel span6'>
+          <h3>Apollo: Spark-based data sharing & tertiary analysis</h3>
+          <div class='meta'>DNAnexus • precision medicine platform</div>
+          <p>Owned a platform enabling precision medicine research and target discovery with shared/private clinical and molecular datasets. Grew adoption to over 50% of company ARR and thousands of active users, including the UK Biobank RAP rollout.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id='experience'>
+      <h2 class='sectionTitle'>Experience</h2>
+      <p class='sectionDesc'>Roles and scope across research-first domains.</p>
+
+      <div class='timeline'>
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Independent</span> <span class='org'>• Plying with Consumer Focused Agents and Applying modern AI to Biology</span>
+            </div>
+          </div>
+          <ul>
+            <li><b>GPTomics.com</b>: research lab focused on applying modern AI to bioinformatics.</li>
+            <ul>
+            <li><b>BioJEPA</b>: JEPA-based modeling to simulate cell-state changes from chemical and molecular perturbations.</li>
+            <li><b>BioSkills</b>: agent skill library to make bioinformatics work with agents more predictable and correct.</li>
+          </ul>
+            <li><b>GymGen</b>: agentic personal trainer app using multimodal models to generate personalized training content.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Life Sciences Lead Product Manager — AI Interfaces</span> <span class='org'>• AWS (Amazon)</span>
+            </div>
+          </div>
+          <ul>
+            <li>Primary owner (ideation → launch) for a next-generation drug discovery toolkit; translated computational methods into workflows for bench scientists.</li>
+            <li>Led hybrid DS/engineering execution and LLM/agent integration; drove early adoption with a gated preview and structured feedback loops.</li>
+            <li>Created go-to-market collateral and launch plan; achieved thousands of users in the first few months.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Senior Technical Product Manager — Health AI</span> <span class='org'>• AWS (Amazon)</span>
+            </div>
+          </div>
+          <ul>
+            <li>Led multi-million-dollar annual investment across genomics and healthcare AI products.</li>
+            <li>Defined strategy: multi-year roadmap/requirements/staffing; marketing/training/pipeline enablement; and partnership roadmap for biology foundation models.</li>
+            <li>Delivered features spanning storage/compression, workflow integration, and scalable analysis (Spark/EMR).</li>
+            <li>Instituted evaluation and drift practices for healthcare NLP and defined LLM strategy for commercialization.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Principal Product Manager</span> <span class='org'>• DNAnexus</span>
+            </div>
+          </div>
+          <ul>
+            <li>Hired and managed three PMs; introduced problem-based roadmapping and release standards.</li>
+            <li>Launched a Scientific Product team to productize molecular computational R&D into market-ready features.</li>
+            <li>Built solutions for petabyte-scale analysis across WGS, somatic, single-cell, spatial, and proteomics.</li>
+            <li>Owned Apollo; grew to 50%+ of company ARR and thousands of users; led UK Biobank RAP rollout.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Product Lead</span> <span class='org'>• Akorda (acquired)</span>
+            </div>
+          </div>
+          <ul>
+            <li>Joined early; replaced founding VP Product during limited runway.</li>
+            <li>Led pivot to reach product-market fit in weeks; reengaged lost customers and increased funnel 10×.</li>
+            <li>Shipped lightweight ML-based analysis product driven by client feedback; established client counsel for rapid validation.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Principal Strategic Product & Program Manager</span> <span class='org'>• Appian</span>
+            </div>
+          </div>
+          <ul>
+            <li>Pharmaceutical safety/labeling orchestration: program and technical lead for lifecycle-linked data models/UX and cross-system ETL for real-time monitoring.</li>
+            <li>Delivered projects across banking operations, internal analytics/wiki tooling, and ML/SQL/Python feedback pipelines.</li>
+          </ul>
+        </div>
+
+        <div class='item'>
+          <div class='head'>
+            <div>
+              <span class='role'>Implementation Lead</span> <span class='org'>• Manhattan Associates</span>
+            </div>
+          </div>
+          <ul>
+            <li>Led warehouse and labor management delivery for 3PL; built custom SQL and BI reporting to improve tracking and analysis.</li>
+            <li>Led WMS implementation for medical device manufacturing with TCP/IP control systems and ETL for operational KPI analysis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id='projects'>
+      <h2 class='sectionTitle'>Latest projects</h2>
+      <div class='grid'>
+        <div class='panel span6'>
+          <h3><a href='https://gptomics.com' target='_blank' rel='noreferrer'>GPTomics.com</a></h3>
+          <div class='meta'>AI + omics • research hub</div>
+          <p>Public-facing lab site and portfolio for biology-first modeling and AI-accelerated bioinformatics.</p>
+        </div>
+
+        <div class='panel span6'>
+          <h3><a href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>GymGen.xyz</a></h3>
+          <div class='meta'>Agentic consumer app • multimodal</div>
+          <p>Agentic personal trainer app using text, voice, and video models to generate personalized training content and programming.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id='talks'>
+      <h2 class='sectionTitle'>Talks & presentations</h2>
+      <p class='sectionDesc'>Communication that aligns technical depth with narrative for scientists, engineers, executives, and customers.</p>
+      <div class='twocol'>
+        <div class='panel'>
+          <h3>Industry and customer presentations</h3>
+          <div class='meta'>Life sciences platforms • AI enablement</div>
+          <p>Presentations on storage/compute/analysis, workflow integration, and biological foundation models.</p>
+        </div>
+        <div class='panel'>
+          <h3>Field enablement</h3>
+          <div class='meta'>Training • documentation • RFP/RFI support</div>
+          <p>Training programs, public documentation, and product narratives supporting sales cycles and partnership strategies across genomics and healthcare.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id='contact'>
+      <h2 class='sectionTitle'>Contact</h2>
+      <p class='sectionDesc'>Email and social links.</p>
+      <div class='grid'>
+        <div class='panel span8'>
+          <h3>Links</h3>
+          <div class='iconlinks' style='margin-top:10px' aria-label='Email and social links (bottom)'>
+            <button class='iconbtn' id='emailIcon2' type='button' aria-label='Reveal email'>
+              <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>
+                <path d='M4 4h16v16H4z'></path>
+                <path d='M22 6l-10 7L2 6'></path>
+              </svg>
+            </button>
+            <a class='iconbtn' href='https://www.linkedin.com/in/domenjemec/' target='_blank' rel='noreferrer' aria-label='LinkedIn'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 23.5h4V7.98h-4V23.5ZM8.5 7.98h3.83v2.12h.05c.53-1.01 1.83-2.07 3.77-2.07 4.03 0 4.78 2.65 4.78 6.09v9.38h-4v-8.32c0-1.98-.04-4.52-2.75-4.52-2.75 0-3.17 2.15-3.17 4.38v8.46h-4V7.98Z'/>
+              </svg>
+            </a>
+            <a class='iconbtn' href='https://github.com/djemec' target='_blank' rel='noreferrer' aria-label='GitHub'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M12 .296c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 .6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.236 1.839 1.236 1.07 1.834 2.807 1.305 3.492.998 .108-.776 .418-1.305 .762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31 .469-2.381 1.236-3.221 -.123-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23 .957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .653 1.653 .24 2.874 .117 3.176 .77 .84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.624-5.475 5.921 .43 .372 .823 1.102 .823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319 .216 .694 .825 .576C20.565 21.79 24 17.29 24 12.296c0-6.627-5.373-12-12-12'/>
+              </svg>
+            </a>
+            <a class='iconbtn' href='https://x.com/domenjemec' target='_blank' rel='noreferrer' aria-label='Twitter / X'>
+              <svg class='icon' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+                <path d='M18.9 2H22l-6.78 7.75L23 22h-6.2l-4.86-6.65L6.1 22H3l7.26-8.3L1.5 2h6.35l4.4 6.05L18.9 2Zm-1.09 18h1.72L7.08 3.92H5.23L17.81 20Z'/>
+              </svg>
+            </a>
+          </div>
+
+          <div class='emailBlock' id='emailBlock2'>
+            <div class='label'>Email</div>
+            <div class='value'><a href='mailto:domen.jemec@gmail.com'>domen.jemec@gmail.com</a></div>
+          </div>
+
+          <p style='margin-top:14px; color:var(--muted)'>
+            If you want a response within one message, include: problem statement, target user, constraints (data, compliance, infra),
+            and what “success” looks like (metric/timeframe).
+          </p>
+        </div>
+
+        <div class='panel span4'>
+          <h3>Credentials (brief)</h3>
+          <div class='meta'>Education • publication</div>
+          <p>B.S. Genetics (Clemson University). Published on virtual screening: <a href='https://doi.org/10.1021/acs.jcim.5b00303' target='_blank' rel='noreferrer'>10.1021/acs.jcim.5b00303</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class='footer' aria-label='Footer'>
+      <div>© <span id='y'></span> Domen Jemec</div>
+      <div><span class='sr'>Back to top</span><a href='#top'>Top</a></div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    function wireToggle(buttonId, blockId){
+      var btn = document.getElementById(buttonId);
+      var block = document.getElementById(blockId);
+      if(!btn || !block) return;
+      btn.addEventListener('click', function(){
+        block.style.display = (block.style.display === 'none' || block.style.display === '') ? 'block' : 'none';
+      });
+    }
+    wireToggle('emailIcon1','emailBlock1');
+    wireToggle('emailIcon2','emailBlock2');
+  </script>
+</body>
+</html>
