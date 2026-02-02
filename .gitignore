@@ -129,3 +129,10 @@ dmypy.json
 .pyre/
 
 *.DS_Store
+.DS_Store
+
+
+# claude
+.claude
+CLAUDE.md
+instructions.md
