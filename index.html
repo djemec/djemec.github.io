@@ -68,6 +68,12 @@
     }
     .nav-social a:hover,.nav-social button:hover{color:var(--accent)}
     .nav-social svg{width:22px;height:22px}
+    .nav-link{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-weight:600;
+    }
 
     /* Hero */
     .hero{padding:0px 0 70px}
@@ -76,7 +82,7 @@
       font-weight:700;
       line-height:1.2;
       letter-spacing:-0.5px;
-      margin-bottom:20px;
+      margin-bottom:25px;
       background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -194,11 +200,49 @@
     .story a:hover{text-decoration:none}
 
     /* Work */
+    .work-toggle{
+      background:none;
+      border:none;
+      padding:0;
+      margin-bottom:0;
+      cursor:pointer;
+      color:var(--accent);
+      font-family:var(--sans);
+      font-size:13px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition:opacity .15s;
+    }
+    .work-toggle:hover{opacity:.75}
+    .work-toggle .chevron{
+      width:10px;
+      height:10px;
+      border-right:2px solid var(--accent);
+      border-bottom:2px solid var(--accent);
+      transform:rotate(-45deg);
+      transition:transform .25s ease;
+      margin-top:-3px;
+    }
+    .work-toggle[aria-expanded='true'] .chevron{transform:rotate(45deg);margin-top:-6px}
+    .work-toggle[aria-expanded='true']{margin-bottom:32px}
     .work-list{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .35s ease;
+    }
+    .work-list[data-open='true']{grid-template-rows:1fr}
+    .work-list-inner{
+      overflow:hidden;
       display:flex;
       flex-direction:column;
       gap:16px;
     }
+    #work{transition:padding-bottom .35s ease}
+    #work:has(.work-list[data-open='false']){padding-bottom:0}
     .work-item{
       padding:20px 0;
       border-bottom:1px solid rgba(255,255,255,.07);
@@ -280,6 +324,7 @@
     <nav>
       <div class='logo'>Domen Jemec</div>
       <div class='nav-social'>
+        <a href='blog.html' class='nav-link'>Blog</a>
         <a href='https://www.linkedin.com/in/domenjemec/' target='_blank' rel='noreferrer' aria-label='LinkedIn'>
           <svg viewBox='0 0 24 24' fill='currentColor'><path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/></svg>
         </a>
@@ -296,11 +341,11 @@
     </nav>
     <hr>
     <div class='hero'>
-      <h1>I define and build tools that enable scientific breakthroughs.</h1>
+      <h1>I define and build tools that enable scientific breakthroughs</h1>
 
       <div class='hero-grid'>
         <div class='hero-content'>
-          <p class='tagline'>I’m a life science focused technical product manager with over a decade of experience building products for scientists. I’m great at finding ways to take specialized research tools that are typically usable only by a few and turning them into products that more scientists can actually use.</p>
+          <p class='tagline'>I’m a life science and AI focused technical product manager with over a decade of experience building products for scientists. I’m great at finding ways to take specialized research tools that are typically usable only by a few and turning them into products that more scientists can actually use.</p>
 
           <div class='now-section'>
             <h2>What I'm Building Now</h2>
@@ -308,7 +353,7 @@
               <div class='project-item'>
                 <h3>
                   <a href='https://gptomics.com' target='_blank' rel='noreferrer'>GPTomics / BioJEPA</a></h3>
-                <p>A model that learns the physics of cells to predict perturbation responses without wetlab experiments.</p>
+                <p>A model that learns the physics of cells and can predict perturbation responses.</p>
                 <div class='links'>
  
                   <a href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'>
@@ -319,8 +364,8 @@
               </div>
 
               <div class='project-item'>
-                <h3><a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>GPTomics / BioSkills</a></h3>
-                <p>A skill library that turns PhD-level bioinformatics nuance into reliable agent execution.</p>
+                <h3><a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>GPTomics / BioSkills & BioTaskBench</a></h3>
+                <p>A skill library and benchmark that turns PhD-level bioinformatics nuance into reliable agent execution.</p>
                 <div class='links'>
                   <a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>
                     <svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
@@ -328,18 +373,6 @@
                   </a>
                 </div>
               </div>
-
-              <div class='project-item'>
-                <h3><a href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>GymGen</a></h3>
-                <p>An AI personal trainer app to learn what it takes to ship agents to real users.</p>
-                <div class='links'>
-                  <a href='https://www.gymgen.xyz/' target='_blank' rel='noreferrer'>
-                    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/><path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/></svg>
-                    Sign Up
-                  </a>
-                </div>
-              </div>
-
                 <div class='project-item'>
                 <h3><a href='https://github.com/djemec/descriptive_notebooks' target='_blank' rel='noreferrer'>Descriptive Notebooks</a></h3>
                 <p>A series of educational notebooks showing forward passes of common DL architectures.</p>
@@ -359,38 +392,33 @@
         </div>
       </div>
     </div>
-
-    <section id='story'>
-      <h2>The Story</h2>
-      <div class='story'>
-        <p>I've always wanted to understand how things actually work. Diving deep started in college where I studied genetics because I was curious about the machinery inside cells. I ended up doing research on virtual screening to better understand how simulation technology could advance our understanding of biology. Then, I got curious about something else: how does business work and what's it like to get paid in a real job? So I spent a few years doing consulting, delivering custom processes and software for pharmas, life science, supply chain, banks, and medical device companies. What I found was that I really enjoyed the part where you figure out what to build, watch people use it, and improve it. What I didn't like was cutting the engagement just when there was traction.</p>
-        <p>That led me to product management, which I merged with my fascination with biology. At DNAnexus I grew the clinico-genomic data sharing and analysis platform from a single customer. I also pitched and built a scientific product R&D team built of engineers and scientists working on productionizing research algorithms. With the software and team we made it possible for researchers to analyze huge genomic datasets without having to think about the infrastructure. It grew to be a large portion of the company's strategy and revenue and we also got to power the <a href='https://www.ukbiobank.ac.uk/' target='_blank' rel='noreferrer'>UK Biobank's</a> research platform. At AWS I did similar things at larger scale: built a molecular data platform, shipped drug discovery tools with AI integration, turned around a healthcare NLP product. The interesting pattern I noticed was that compute and data often weren't the bottlenecks. The bottleneck was that scientists didn't know what to ask for from software, only how to express the problems they wanted to solve. I also found that most AI systems people were building didn't know how to meet scientists where they're at.</p>
-        <p>So now I'm trying to understand that gap better through a neolab I started with some friends. In the lab I've been building things from scratch. First an <a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>agent skill library</a> and <a href='https://github.com/GPTomics/bioTaskBench' target='_blank' rel='noreferrer'>benchmarking harness</a> for bioinformatics to see if agents can be made to reliably and reproducibly handle PhD+ levels of nuance. Also a <a href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'>JEPA based bioFM</a> that tries to predict cell states and how they respond to perturbations to see if we can simulate biology instead of just measuring it. I also dabbled in a few other interests such as building consumer focused applications and vetting life science companies for VCs. Mainly I've been pursuing any opportunity that makes me think "hell yes" and avoiding the "mehs."</p>
-      </div>
-    </section>
-
     <section id='work'>
-      <h2>Selected Work</h2>
-      <div class='work-list'>
-        <div class='work-item'>
-          <h3><a href='https://researchstudio.aws.com/' target='_blank' rel='noreferrer'>Drug Discovery Toolkit</a></h3>
-          <div class='company'>AWS</div>
-          <p>Owned the journey from ideation to launch for a next-generation drug discovery toolkit. The goal was to translate in-silico algorithms into accessible workflows for bench scientists to create a fully connected lab-in-the-loop. I led LLM/agent integration and shipped a gated preview to our early adopter users.</p>
-        </div>
-        <div class='work-item'>
-          <h3><a href='https://aws.amazon.com/healthomics/' target='_blank' rel='noreferrer'>HealthOmics</a></h3>
-          <div class='company'>AWS</div>
-          <p>Genomics data is measured in petabytes. Most tools were built when gigabytes felt big. At AWS, I led the product work on HealthOmics, a product focused on storage, compute, and analysis built for the scale genomics actually needs.</p>
-        </div>
-        <div class='work-item'>
-          <h3><a href='https://aws.amazon.com/comprehend/medical/' target='_blank' rel='noreferrer'>Healthcare NLP</a></h3>
-          <div class='company'>AWS</div>
-          <p>Inherited a product that had plateaued in usage and ideas. I instituted MLOps best practices for evaluation and drift monitoring, defined an LLM strategy for commercialization, and turned it around within a year.</p>
-        </div>
-        <div class='work-item'>
-          <h3><a href='https://www.dnanexus.com/' target='_blank' rel='noreferrer'>Apollo</a></h3>
-          <div class='company'>DNAnexus</div>
-          <p>A platform for precision medicine research at population scale focusing on clinical/molecular datasets. I grew it from a product targeted at a single customer to thousands of active users, including the UK Biobank Research Analysis Platform.</p>
+      <button class='work-toggle' id='workToggle' aria-expanded='false' aria-controls='workList'>
+        <span>Selected Product Work</span>
+        <span class='chevron' aria-hidden='true'></span>
+      </button>
+      <div class='work-list' id='workList' data-open='false'>
+        <div class='work-list-inner'>
+          <div class='work-item'>
+            <h3><a href='https://researchstudio.aws.com/' target='_blank' rel='noreferrer'>Agent-Native Drug Discovery Workbench (Bio Discovery)</a></h3>
+            <div class='company'>AWS</div>
+            <p>Led the agent-native experience allowing all scientists to harness the power of BioFMs.</p>
+          </div>
+          <div class='work-item'>
+            <h3><a href='https://aws.amazon.com/healthomics/' target='_blank' rel='noreferrer'>Life Science Storage (HealthOmics)</a></h3>
+            <div class='company'>AWS</div>
+            <p>Led the storage and analysis layers for a life science dedicated storage solution.</p>
+          </div>
+          <div class='work-item'>
+            <h3><a href='https://aws.amazon.com/comprehend/medical/' target='_blank' rel='noreferrer'>Healthcare NLP (Comprehend Medical)</a></h3>
+            <div class='company'>AWS</div>
+            <p>Led an NLP-backed service for extracting knowledge graphs from medical text and conversations.</p>
+          </div>
+          <div class='work-item'>
+            <h3><a href='https://www.dnanexus.com/' target='_blank' rel='noreferrer'>Multiomics Analysis Suite (Apollo)</a></h3>
+            <div class='company'>DNAnexus</div>
+            <p>Led the population-scale clinico-genomic analysis platform. Also launched and led the scientific product team that focused on productizing research tools.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -411,7 +439,7 @@
 
     <footer>
       <div>&copy; <span id='year'></span> Domen Jemec</div>
-      <div><a href='#'>I'm lazy, Take me back to the top</a></div>
+      <div><a href='#'>I'm lazy, take me back to the top</a></div>
     </footer>
   </div>
 
@@ -423,6 +451,12 @@
     document.getElementById('emailBtn2').addEventListener('click', function(){
       var el = document.getElementById('emailReveal2');
       el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    });
+    document.getElementById('workToggle').addEventListener('click', function(){
+      var list = document.getElementById('workList');
+      var open = list.getAttribute('data-open') === 'true';
+      list.setAttribute('data-open', open ? 'false' : 'true');
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
     });
   </script>
 </body>

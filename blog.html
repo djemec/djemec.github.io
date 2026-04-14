@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='Writing on AI for biology, scientific tooling, and product building by Domen Jemec.' />
+  <title>Blog | Domen Jemec</title>
+  <meta property='og:title' content='Blog | Domen Jemec' />
+  <meta property='og:description' content='Writing on AI for biology, scientific tooling, and product building.' />
+  <meta property='og:url' content='https://domenjemec.com/blog.html' />
+  <meta property='og:type' content='website' />
+  <meta property='og:image' content='https://domenjemec.com/resources/photo.jpg' />
+  <meta name='twitter:card' content='summary_large_image' />
+  <meta name='twitter:site' content='@domenjemec' />
+  <meta name='twitter:creator' content='@domenjemec' />
+  <meta name='twitter:title' content='Blog | Domen Jemec' />
+  <meta name='twitter:description' content='Writing on AI for biology, scientific tooling, and product building.' />
+  <meta name='twitter:image' content='https://domenjemec.com/resources/photo.jpg' />
+  <link rel='canonical' href='https://domenjemec.com/blog.html' />
+  <meta name='author' content='Domen Jemec' />
+  <meta name='robots' content='index, follow' />
+  <style>
+    :root{
+      --bg:#020810;
+      --text:#ffffff;
+      --muted:#8899aa;
+      --accent:#00f5ff;
+      --maxw:1400px;
+      --readw:720px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.6;
+      background:var(--bg);
+      font-size:18px;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 2vw}
+
+    nav{
+      padding:15px 0 10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .logo{
+      font-size:30px;
+      font-weight:700;
+      color:var(--accent);
+    }
+    .nav-social{display:flex;gap:20px;align-items:center}
+    .nav-social a,.nav-social button{
+      color:var(--muted);
+      transition:all .1s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-family:var(--sans);
+      font-size:15px;
+    }
+    .nav-social a:hover,.nav-social button:hover{color:var(--accent)}
+    .nav-social svg{width:22px;height:22px}
+    .nav-link{
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-weight:600;
+    }
+    .nav-link.active{color:var(--accent)}
+
+    main{padding:40px 0 80px}
+
+    /* List view */
+    .blog-header h1{
+      font-size:clamp(28px,4vw,46px);
+      font-weight:700;
+      line-height:1.2;
+      letter-spacing:-0.5px;
+      margin-bottom:16px;
+      background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .blog-header p{
+      font-size:17px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:var(--readw);
+      margin-bottom:48px;
+    }
+    .post-list{display:flex;flex-direction:column;gap:4px}
+    .post-item{
+      display:block;
+      padding:22px 0;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      transition:padding .15s;
+    }
+    .post-item:hover{padding-left:8px}
+    .post-item:hover h2{color:var(--accent)}
+    .post-item .date{
+      font-size:13px;
+      color:var(--accent);
+      font-family:var(--mono);
+      margin-bottom:6px;
+    }
+    .post-item h2{
+      font-size:22px;
+      font-weight:600;
+      color:var(--text);
+      transition:color .15s;
+      margin:0;
+      text-transform:none;
+      letter-spacing:normal;
+    }
+    .empty{color:var(--muted);font-size:16px;padding:20px 0}
+
+    /* Post view */
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:32px;
+      transition:color .15s;
+    }
+    .back-link:hover{color:var(--accent)}
+    .back-link svg{width:14px;height:14px}
+
+    article{
+      max-width:var(--readw);
+      margin:0 auto;
+    }
+    article .post-date{
+      font-size:13px;
+      color:var(--accent);
+      font-family:var(--mono);
+      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+    article h1{
+      font-size:clamp(28px,4vw,42px);
+      font-weight:700;
+      line-height:1.2;
+      letter-spacing:-0.5px;
+      margin-bottom:32px;
+      background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    article h2{
+      font-size:22px;
+      font-weight:600;
+      color:var(--text);
+      margin-top:40px;
+      margin-bottom:16px;
+      text-transform:none;
+      letter-spacing:normal;
+    }
+    article h3{
+      font-size:18px;
+      font-weight:600;
+      color:var(--text);
+      margin-top:32px;
+      margin-bottom:12px;
+    }
+    article p{
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.85;
+      margin-bottom:20px;
+    }
+    article a{
+      color:var(--accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+    article a:hover{text-decoration:none}
+    article ul,article ol{
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.85;
+      margin-bottom:20px;
+      padding-left:24px;
+    }
+    article li{margin-bottom:8px}
+    article blockquote{
+      border-left:2px solid var(--accent);
+      padding-left:20px;
+      margin:24px 0;
+      color:var(--muted);
+      font-style:italic;
+    }
+    article code{
+      font-family:var(--mono);
+      font-size:15px;
+      background:rgba(0,245,255,.08);
+      color:var(--accent);
+      padding:2px 6px;
+      border-radius:0;
+    }
+    article pre{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.07);
+      padding:18px 20px;
+      margin:24px 0;
+      overflow-x:auto;
+      font-family:var(--mono);
+      font-size:14px;
+      line-height:1.6;
+    }
+    article pre code{
+      background:none;
+      color:var(--text);
+      padding:0;
+      font-size:14px;
+    }
+    article img{max-width:100%;height:auto;margin:24px 0}
+    article hr{
+      border:none;
+      border-top:1px solid rgba(255,255,255,.07);
+      margin:40px 0;
+    }
+
+    .loading{color:var(--muted);font-size:16px;padding:40px 0;text-align:center}
+
+    footer{
+      padding:36px 0;
+      border-top:1px solid rgba(255,255,255,.07);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+    footer a{color:var(--accent)}
+    @media(max-width:500px){
+      footer{flex-direction:column;gap:10px;text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <nav>
+      <a href='index.html' class='logo'>Domen Jemec</a>
+      <div class='nav-social'>
+        <a href='blog.html' class='nav-link active'>Blog</a>
+        <a href='https://www.linkedin.com/in/domenjemec/' target='_blank' rel='noreferrer' aria-label='LinkedIn'>
+          <svg viewBox='0 0 24 24' fill='currentColor'><path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/></svg>
+        </a>
+        <a href='https://github.com/djemec' target='_blank' rel='noreferrer' aria-label='GitHub'>
+          <svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
+        </a>
+        <a href='https://x.com/domenjemec' target='_blank' rel='noreferrer' aria-label='Twitter'>
+          <svg viewBox='0 0 24 24' fill='currentColor'><path d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z'/></svg>
+        </a>
+      </div>
+    </nav>
+    <hr>
+
+    <main id='main'>
+      <div class='loading'>Loading…</div>
+    </main>
+
+    <footer>
+      <div>&copy; <span id='year'></span> Domen Jemec</div>
+      <div><a href='index.html'>Back home</a></div>
+    </footer>
+  </div>
+
+  <script src='https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js'></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const main = document.getElementById('main');
+    const params = new URLSearchParams(window.location.search);
+    const postParam = params.get('post');
+
+    function slugFromFile(file){ return file.replace(/\.md$/i, ''); }
+
+    function extractTitle(md){
+      const lines = md.split('\n');
+      for (const line of lines){
+        const m = line.match(/^#\s+(.+?)\s*$/);
+        if (m) return m[1].trim();
+      }
+      return null;
+    }
+
+    function stripTitle(md){
+      const lines = md.split('\n');
+      for (let i = 0; i < lines.length; i++){
+        if (/^#\s+/.test(lines[i])){
+          lines.splice(i, 1);
+          while (i < lines.length && lines[i].trim() === '') lines.splice(i, 1);
+          break;
+        }
+      }
+      return lines.join('\n');
+    }
+
+    function formatDate(iso){
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+    }
+
+    async function loadManifest(){
+      const res = await fetch('blogs/blogs.json', {cache:'no-cache'});
+      if (!res.ok) throw new Error('Failed to load blogs.json');
+      return res.json();
+    }
+
+    async function fetchPost(file){
+      const res = await fetch('blogs/' + file, {cache:'no-cache'});
+      if (!res.ok) throw new Error('Not found: ' + file);
+      return res.text();
+    }
+
+    async function renderList(){
+      document.title = 'Blog | Domen Jemec';
+      let posts;
+      try { posts = await loadManifest(); }
+      catch(e){
+        main.innerHTML = '<p class="empty">Could not load posts.</p>';
+        return;
+      }
+      posts.sort((a,b) => (a.date < b.date ? 1 : -1));
+
+      const entries = await Promise.all(posts.map(async p => {
+        let title = p.title;
+        if (!title){
+          try {
+            const md = await fetchPost(p.file);
+            title = extractTitle(md) || slugFromFile(p.file);
+          } catch { title = slugFromFile(p.file); }
+        }
+        return {...p, title};
+      }));
+
+      const header = `
+        <div class='blog-header'>
+          <h1>Notes</h1>
+          <p>Occasional writing on AI for biology, scientific tooling, and what I'm learning while building.</p>
+        </div>`;
+
+      const list = entries.length
+        ? `<div class='post-list'>${entries.map(e => `
+            <a class='post-item' href='blog.html?post=${encodeURIComponent(slugFromFile(e.file))}'>
+              <div class='date'>${formatDate(e.date)}</div>
+              <h2>${escapeHtml(e.title)}</h2>
+            </a>`).join('')}</div>`
+        : `<p class='empty'>No posts yet.</p>`;
+
+      main.innerHTML = header + list;
+    }
+
+    async function renderPost(slug){
+      let posts;
+      try { posts = await loadManifest(); }
+      catch(e){
+        main.innerHTML = renderError('Could not load posts.');
+        return;
+      }
+      const entry = posts.find(p => slugFromFile(p.file) === slug);
+      if (!entry){
+        main.innerHTML = renderError('Post not found.');
+        return;
+      }
+      let md;
+      try { md = await fetchPost(entry.file); }
+      catch(e){
+        main.innerHTML = renderError('Post not found.');
+        return;
+      }
+      const title = extractTitle(md) || slugFromFile(entry.file);
+      document.title = title + ' | Domen Jemec';
+      const body = stripTitle(md);
+      const html = marked.parse(body);
+      main.innerHTML = `
+        <a class='back-link' href='blog.html'>
+          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M19 12H5M12 19l-7-7 7-7'/></svg>
+          All posts
+        </a>
+        <article>
+          <div class='post-date'>${formatDate(entry.date)}</div>
+          <h1>${escapeHtml(title)}</h1>
+          ${html}
+        </article>`;
+    }
+
+    function renderError(msg){
+      return `
+        <a class='back-link' href='blog.html'>
+          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M19 12H5M12 19l-7-7 7-7'/></svg>
+          All posts
+        </a>
+        <p class='empty'>${escapeHtml(msg)}</p>`;
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    if (postParam) renderPost(postParam); else renderList();
+  </script>
+</body>
+</html>
