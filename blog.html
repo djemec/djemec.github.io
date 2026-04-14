@@ -191,7 +191,7 @@
     async function renderList(){
       let posts;
       try {
-        const res = await fetch('blogs/blogs.json', {cache:'no-cache'});
+        const res = await fetch('blogs/blogs.json');
         if (!res.ok) throw new Error('fetch failed');
         posts = await res.json();
       } catch(e){
@@ -204,7 +204,7 @@
       const entries = await Promise.all(posts.map(async p => {
         if (p.title) return p;
         try {
-          const md = await fetch('blogs/' + p.file, {cache:'no-cache'}).then(r => r.text());
+          const md = await fetch('blogs/' + p.file).then(r => r.text());
           const m = md.split('\n').find(l => /^#\s+/.test(l));
           return {...p, title: m ? m.replace(/^#\s+/, '').trim() : slugFromFile(p.file)};
         } catch {

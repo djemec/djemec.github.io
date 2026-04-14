@@ -184,11 +184,12 @@ def save_manifest(entries):
     MANIFEST.write_text(json.dumps(entries_sorted, indent=2) + '\n')
 
 
-def upsert_manifest(manifest, file_name, iso_date):
+def upsert_manifest(manifest, file_name, iso_date, title):
     for entry in manifest:
         if entry['file'] == file_name:
+            entry['title'] = title
             return manifest
-    manifest.append({'file': file_name, 'date': iso_date})
+    manifest.append({'file': file_name, 'date': iso_date, 'title': title})
     return manifest
 
 
@@ -220,7 +221,7 @@ def main():
     manifest = load_manifest()
     existing = next((e for e in manifest if e['file'] == md_dest.name), None)
     iso_date = existing['date'] if existing else date.today().isoformat()
-    manifest = upsert_manifest(manifest, md_dest.name, iso_date)
+    manifest = upsert_manifest(manifest, md_dest.name, iso_date, title)
     save_manifest(manifest)
 
     body_html = markdown.markdown(body_md, extensions=['extra', 'sane_lists', 'nl2br'])
