@@ -29,15 +29,13 @@ TEMPLATE = '''<!doctype html>
   <meta property='og:description' content='{description}' />
   <meta property='og:url' content='{url}' />
   <meta property='og:type' content='article' />
-  <meta property='og:image' content='{SITE_URL}/resources/photo.jpg' />
   <meta property='article:author' content='Domen Jemec' />
   <meta property='article:published_time' content='{iso_date}' />
-  <meta name='twitter:card' content='summary_large_image' />
+  <meta name='twitter:card' content='summary' />
   <meta name='twitter:site' content='@domenjemec' />
   <meta name='twitter:creator' content='@domenjemec' />
   <meta name='twitter:title' content='{title} | Domen Jemec' />
   <meta name='twitter:description' content='{description}' />
-  <meta name='twitter:image' content='{SITE_URL}/resources/photo.jpg' />
   <link rel='canonical' href='{url}' />
   <meta name='author' content='Domen Jemec' />
   <meta name='robots' content='index, follow' />
