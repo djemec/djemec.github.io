@@ -83,10 +83,7 @@
       line-height:1.2;
       letter-spacing:-0.5px;
       margin-bottom:25px;
-      background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      color:var(--text);
     }
 
     .hero-grid{
@@ -139,39 +136,41 @@
     .project-item{
       padding:14px 18px;
       border-radius:0;
+      position:relative;
+      cursor:pointer;
     }
     .project-item:hover{
       border-color:rgba(0,245,255,.35);
       border:1px solid rgba(0,245,255,.12);
       box-shadow:0 0 30px rgba(0,245,255,.1);
     }
+    .project-item:hover h3 a{color:var(--accent)}
     .project-item h3{
       font-size:15px;
       font-weight:600;
       margin-bottom:4px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .project-item .tile-icon{
+      width:13px;
+      height:13px;
+      color:var(--muted);
+      flex-shrink:0;
     }
     .project-item h3 a{color:var(--text);transition:color .2s}
-    .project-item h3 a:hover{color:var(--accent)}
+    .project-item h3 a::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      z-index:1;
+    }
     .project-item p{
       color:var(--muted);
       font-size:13px;
       line-height:1.55;
     }
-    .project-item .links{
-      display:flex;
-      gap:12px;
-      margin-top:8px;
-    }
-    .project-item .links a{
-      font-size:12px;
-      color:var(--accent);
-      display:flex;
-      align-items:center;
-      gap:4px;
-      transition:opacity .2s;
-    }
-    .project-item .links a:hover{opacity:.7}
-    .project-item .links svg{width:12px;height:12px}
 
     /* Sections */
     section{padding:70px 0}
@@ -360,36 +359,34 @@
             <div class='project-list'>
               <div class='project-item'>
                 <h3>
-                  <a href='https://gptomics.com' target='_blank' rel='noreferrer'>GPTomics / BioJEPA</a></h3>
-                <p>A model that learns the physics of cells and can predict perturbation responses.</p>
-                <div class='links'>
- 
-                  <a href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'>
-                    <svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
-                    Follow Along
-                  </a>
-                </div>
+                  <a href='blog.html'>Personal Blog</a>
+                  <svg class='tile-icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='8' y1='13' x2='16' y2='13'/><line x1='8' y1='17' x2='16' y2='17'/></svg>
+                </h3>
+                <p>Occasional writings on product management, AI, software, and other interests.</p>
               </div>
 
               <div class='project-item'>
-                <h3><a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>GPTomics / BioSkills & BioTaskBench</a></h3>
-                <p>A skill library and benchmark that turns PhD-level bioinformatics nuance into reliable agent execution.</p>
-                <div class='links'>
-                  <a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>
-                    <svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
-                    Explore & Install
-                  </a>
-                </div>
+                <h3>
+                  <a href='https://github.com/GPTomics/biojepa' target='_blank' rel='noreferrer'>GPTomics / BioJEPA</a>
+                  <svg class='tile-icon' viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
+                </h3>
+                <p>A model that learns the physics of cells and can predict perturbation responses.</p>
               </div>
-                <div class='project-item'>
-                <h3><a href='https://github.com/djemec/descriptive_notebooks' target='_blank' rel='noreferrer'>Descriptive Notebooks</a></h3>
+
+              <div class='project-item'>
+                <h3>
+                  <a href='https://github.com/GPTomics/bioSkills' target='_blank' rel='noreferrer'>GPTomics / BioSkills & BioTaskBench</a>
+                  <svg class='tile-icon' viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
+                </h3>
+                <p>A skill library and benchmark that turns PhD-level bioinformatics nuance into reliable agent execution.</p>
+              </div>
+
+              <div class='project-item'>
+                <h3>
+                  <a href='https://github.com/djemec/descriptive_notebooks' target='_blank' rel='noreferrer'>Descriptive Notebooks</a>
+                  <svg class='tile-icon' viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
+                </h3>
                 <p>A series of educational notebooks showing forward passes of common DL architectures.</p>
-                <div class='links'>
-                  <a href='https://github.com/djemec/descriptive_notebooks' target='_blank' rel='noreferrer'>
-                    <svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/></svg>
-                    Dig In
-                  </a>
-                </div>
               </div>
             </div>
           </div>
