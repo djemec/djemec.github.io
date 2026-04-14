@@ -163,7 +163,16 @@
     <hr>
 
     <main id='main'>
-      <div class='loading'>Loading…</div>
+      <div class='blog-header'>
+        <h1>Blogs</h1>
+        <p>Occasional writings on product management, AI, software, and other interests.</p>
+      </div>
+      <div class='post-list'>
+        <a class='post-item' href='https://gptomics.com/blog/coherently_solve_user_problems.html' target='_blank' rel='noreferrer'>
+          <div class='date'>April 13, 2026</div>
+          <h2>Coherently solve user problems</h2>
+        </a>
+      </div>
     </main>
 
     <footer>
@@ -174,62 +183,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const main = document.getElementById('main');
-
-    function slugFromFile(file){ return file.replace(/\.md$/i, ''); }
-
-    function formatDate(iso){
-      const d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
-    }
-
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-
-    async function renderList(){
-      let posts;
-      try {
-        const res = await fetch('blogs/blogs.json');
-        if (!res.ok) throw new Error('fetch failed');
-        posts = await res.json();
-      } catch(e){
-        main.innerHTML = '<p class="empty">Could not load posts.</p>';
-        return;
-      }
-
-      posts.sort((a,b) => (a.date < b.date ? 1 : -1));
-
-      const entries = await Promise.all(posts.map(async p => {
-        if (p.title) return p;
-        try {
-          const md = await fetch('blogs/' + p.file).then(r => r.text());
-          const m = md.split('\n').find(l => /^#\s+/.test(l));
-          return {...p, title: m ? m.replace(/^#\s+/, '').trim() : slugFromFile(p.file)};
-        } catch {
-          return {...p, title: slugFromFile(p.file)};
-        }
-      }));
-
-      const header = `
-        <div class='blog-header'>
-          <h1>Blogs</h1>
-          <p>Occasional writings on product management, AI, software, and other interests.</p>
-        </div>`;
-
-      const list = entries.length
-        ? `<div class='post-list'>${entries.map(e => `
-            <a class='post-item' href='blog/${encodeURIComponent(slugFromFile(e.file))}.html'>
-              <div class='date'>${formatDate(e.date)}</div>
-              <h2>${escapeHtml(e.title)}</h2>
-            </a>`).join('')}</div>`
-        : `<p class='empty'>No posts yet.</p>`;
-
-      main.innerHTML = header + list;
-    }
-
-    renderList();
   </script>
 </body>
 </html>
