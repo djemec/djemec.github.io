@@ -26,7 +26,6 @@
       --muted:#8899aa;
       --accent:#00f5ff;
       --maxw:1400px;
-      --readw:720px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
       --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     }
@@ -79,7 +78,6 @@
 
     main{padding:40px 0 80px}
 
-    /* List view */
     .blog-header h1{
       font-size:clamp(28px,4vw,46px);
       font-weight:700;
@@ -95,7 +93,6 @@
       font-size:17px;
       color:var(--muted);
       line-height:1.7;
-      max-width:var(--readw);
       margin-bottom:48px;
     }
     .post-list{display:flex;flex-direction:column;gap:4px}
@@ -105,6 +102,7 @@
       border-bottom:1px solid rgba(255,255,255,.07);
       transition:padding .15s;
     }
+    .post-item:last-child{border-bottom:none}
     .post-item:hover{padding-left:8px}
     .post-item:hover h2{color:var(--accent)}
     .post-item .date{
@@ -123,117 +121,6 @@
       letter-spacing:normal;
     }
     .empty{color:var(--muted);font-size:16px;padding:20px 0}
-
-    /* Post view */
-    .back-link{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      color:var(--muted);
-      font-size:14px;
-      margin-bottom:32px;
-      transition:color .15s;
-    }
-    .back-link:hover{color:var(--accent)}
-    .back-link svg{width:14px;height:14px}
-
-    article{
-      max-width:var(--readw);
-      margin:0 auto;
-    }
-    article .post-date{
-      font-size:13px;
-      color:var(--accent);
-      font-family:var(--mono);
-      margin-bottom:12px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-    }
-    article h1{
-      font-size:clamp(28px,4vw,42px);
-      font-weight:700;
-      line-height:1.2;
-      letter-spacing:-0.5px;
-      margin-bottom:32px;
-      background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    article h2{
-      font-size:22px;
-      font-weight:600;
-      color:var(--text);
-      margin-top:40px;
-      margin-bottom:16px;
-      text-transform:none;
-      letter-spacing:normal;
-    }
-    article h3{
-      font-size:18px;
-      font-weight:600;
-      color:var(--text);
-      margin-top:32px;
-      margin-bottom:12px;
-    }
-    article p{
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.85;
-      margin-bottom:20px;
-    }
-    article a{
-      color:var(--accent);
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-    article a:hover{text-decoration:none}
-    article ul,article ol{
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.85;
-      margin-bottom:20px;
-      padding-left:24px;
-    }
-    article li{margin-bottom:8px}
-    article blockquote{
-      border-left:2px solid var(--accent);
-      padding-left:20px;
-      margin:24px 0;
-      color:var(--muted);
-      font-style:italic;
-    }
-    article code{
-      font-family:var(--mono);
-      font-size:15px;
-      background:rgba(0,245,255,.08);
-      color:var(--accent);
-      padding:2px 6px;
-      border-radius:0;
-    }
-    article pre{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.07);
-      padding:18px 20px;
-      margin:24px 0;
-      overflow-x:auto;
-      font-family:var(--mono);
-      font-size:14px;
-      line-height:1.6;
-    }
-    article pre code{
-      background:none;
-      color:var(--text);
-      padding:0;
-      font-size:14px;
-    }
-    article img{max-width:100%;height:auto;margin:24px 0}
-    article hr{
-      border:none;
-      border-top:1px solid rgba(255,255,255,.07);
-      margin:40px 0;
-    }
-
     .loading{color:var(--muted);font-size:16px;padding:40px 0;text-align:center}
 
     footer{
@@ -250,6 +137,14 @@
       footer{flex-direction:column;gap:10px;text-align:center}
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src='https://www.googletagmanager.com/gtag/js?id=G-CRV0D7Q5HX'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CRV0D7Q5HX');
+  </script>
 </head>
 <body>
   <div class='container'>
@@ -275,89 +170,60 @@
     </main>
 
     <footer>
-      <div>&copy; <span id='year'></span> Domen Jemec</div>
-      <div><a href='index.html'>Back home</a></div>
+      <div>&copy; <span id='year'></span> <a href='index.html'>Domen Jemec</a></div>
+      <div><a href='#'>I'm lazy, take me back to the top</a></div>
     </footer>
   </div>
 
-  <script src='https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js'></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const main = document.getElementById('main');
-    const params = new URLSearchParams(window.location.search);
-    const postParam = params.get('post');
 
     function slugFromFile(file){ return file.replace(/\.md$/i, ''); }
-
-    function extractTitle(md){
-      const lines = md.split('\n');
-      for (const line of lines){
-        const m = line.match(/^#\s+(.+?)\s*$/);
-        if (m) return m[1].trim();
-      }
-      return null;
-    }
-
-    function stripTitle(md){
-      const lines = md.split('\n');
-      for (let i = 0; i < lines.length; i++){
-        if (/^#\s+/.test(lines[i])){
-          lines.splice(i, 1);
-          while (i < lines.length && lines[i].trim() === '') lines.splice(i, 1);
-          break;
-        }
-      }
-      return lines.join('\n');
-    }
 
     function formatDate(iso){
       const d = new Date(iso + 'T00:00:00');
       return d.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
     }
 
-    async function loadManifest(){
-      const res = await fetch('blogs/blogs.json', {cache:'no-cache'});
-      if (!res.ok) throw new Error('Failed to load blogs.json');
-      return res.json();
-    }
-
-    async function fetchPost(file){
-      const res = await fetch('blogs/' + file, {cache:'no-cache'});
-      if (!res.ok) throw new Error('Not found: ' + file);
-      return res.text();
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
 
     async function renderList(){
-      document.title = 'Blog | Domen Jemec';
       let posts;
-      try { posts = await loadManifest(); }
-      catch(e){
+      try {
+        const res = await fetch('blogs/blogs.json', {cache:'no-cache'});
+        if (!res.ok) throw new Error('fetch failed');
+        posts = await res.json();
+      } catch(e){
         main.innerHTML = '<p class="empty">Could not load posts.</p>';
         return;
       }
+
       posts.sort((a,b) => (a.date < b.date ? 1 : -1));
 
       const entries = await Promise.all(posts.map(async p => {
-        let title = p.title;
-        if (!title){
-          try {
-            const md = await fetchPost(p.file);
-            title = extractTitle(md) || slugFromFile(p.file);
-          } catch { title = slugFromFile(p.file); }
+        if (p.title) return p;
+        try {
+          const md = await fetch('blogs/' + p.file, {cache:'no-cache'}).then(r => r.text());
+          const m = md.split('\n').find(l => /^#\s+/.test(l));
+          return {...p, title: m ? m.replace(/^#\s+/, '').trim() : slugFromFile(p.file)};
+        } catch {
+          return {...p, title: slugFromFile(p.file)};
         }
-        return {...p, title};
       }));
 
       const header = `
         <div class='blog-header'>
-          <h1>Notes</h1>
-          <p>Occasional writing on AI for biology, scientific tooling, and what I'm learning while building.</p>
+          <h1>Blogs</h1>
+          <p>Occasional writings on product management, AI, software, and other interests.</p>
         </div>`;
 
       const list = entries.length
         ? `<div class='post-list'>${entries.map(e => `
-            <a class='post-item' href='blog.html?post=${encodeURIComponent(slugFromFile(e.file))}'>
+            <a class='post-item' href='blog/${encodeURIComponent(slugFromFile(e.file))}.html'>
               <div class='date'>${formatDate(e.date)}</div>
               <h2>${escapeHtml(e.title)}</h2>
             </a>`).join('')}</div>`
@@ -366,54 +232,7 @@
       main.innerHTML = header + list;
     }
 
-    async function renderPost(slug){
-      let posts;
-      try { posts = await loadManifest(); }
-      catch(e){
-        main.innerHTML = renderError('Could not load posts.');
-        return;
-      }
-      const entry = posts.find(p => slugFromFile(p.file) === slug);
-      if (!entry){
-        main.innerHTML = renderError('Post not found.');
-        return;
-      }
-      let md;
-      try { md = await fetchPost(entry.file); }
-      catch(e){
-        main.innerHTML = renderError('Post not found.');
-        return;
-      }
-      const title = extractTitle(md) || slugFromFile(entry.file);
-      document.title = title + ' | Domen Jemec';
-      const body = stripTitle(md);
-      const html = marked.parse(body);
-      main.innerHTML = `
-        <a class='back-link' href='blog.html'>
-          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M19 12H5M12 19l-7-7 7-7'/></svg>
-          All posts
-        </a>
-        <article>
-          <div class='post-date'>${formatDate(entry.date)}</div>
-          <h1>${escapeHtml(title)}</h1>
-          ${html}
-        </article>`;
-    }
-
-    function renderError(msg){
-      return `
-        <a class='back-link' href='blog.html'>
-          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M19 12H5M12 19l-7-7 7-7'/></svg>
-          All posts
-        </a>
-        <p class='empty'>${escapeHtml(msg)}</p>`;
-    }
-
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-
-    if (postParam) renderPost(postParam); else renderList();
+    renderList();
   </script>
 </body>
 </html>
