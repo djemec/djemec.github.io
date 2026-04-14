@@ -3,18 +3,18 @@
 <head>
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <meta name='description' content='Product manager building AI tools that help scientists work faster. Led drug discovery and genomics platforms at AWS and DNAnexus. Now researching AI for cell biology at GPTomics.' />
-  <title>Domen Jemec | Life Science and AI Product Manager</title>
-  <meta property='og:title' content='Domen Jemec | AI Tools for Biology' />
-  <meta property='og:description' content='Product Manager building AI tools that help scientists work faster.' />
+  <meta name='description' content='Life sciences AI product manager with a decade of experience at AWS and DNAnexus. I turn specialized research tools into products more scientists can actually use.' />
+  <title>Domen Jemec | Life Sciences AI Product Manager</title>
+  <meta property='og:title' content='Domen Jemec | Life Sciences AI Product Manager' />
+  <meta property='og:description' content='Life sciences AI PM with a decade of experience at AWS and DNAnexus. I turn specialized research tools into products more scientists can actually use.' />
   <meta property='og:url' content='https://domenjemec.com' />
   <meta property='og:type' content='website' />
   <meta property='og:image' content='https://domenjemec.com/resources/photo.jpg' />
   <meta name='twitter:card' content='summary_large_image' />
   <meta name='twitter:site' content='@domenjemec' />
   <meta name='twitter:creator' content='@domenjemec' />
-  <meta name='twitter:title' content='Domen Jemec | AI Tools for Biology' />
-  <meta name='twitter:description' content='Product Manager building AI tools that help scientists work faster.' />
+  <meta name='twitter:title' content='Domen Jemec | Life Sciences AI Product Manager' />
+  <meta name='twitter:description' content='Life sciences AI PM with a decade of experience at AWS and DNAnexus. I turn specialized research tools into products more scientists can actually use.' />
   <meta name='twitter:image' content='https://domenjemec.com/resources/photo.jpg' />
   <link rel='canonical' href='https://domenjemec.com' />
   <meta name='author' content='Domen Jemec' />
@@ -240,8 +240,6 @@
       flex-direction:column;
       gap:16px;
     }
-    #work{transition:padding-bottom .35s ease}
-    #work:has(.work-list[data-open='false']){padding-bottom:0}
     .work-item{
       padding:20px 0;
       border-bottom:1px solid rgba(255,255,255,.07);
@@ -265,42 +263,6 @@
       font-size:15px;
       line-height:1.7;
     }
-
-    /* Contact */
-    .contact-content{}
-    .contact-content p{
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.7;
-      margin-bottom:20px;
-    }
-    .email-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 24px;
-      background:transparent;
-      border:1px solid var(--accent);
-      border-radius:0;
-      color:var(--accent);
-      font-size:15px;
-      font-family:var(--sans);
-      cursor:pointer;
-      transition:all .2s;
-    }
-    .email-btn:hover{
-      background:rgba(0,245,255,.1);
-      box-shadow:0 0 25px rgba(0,245,255,.25);
-    }
-    .email-btn svg{width:16px;height:16px}
-    .email-reveal{
-      margin-top:14px;
-      font-size:17px;
-      color:var(--accent);
-      display:none;
-    }
-    .email-reveal a{text-decoration:underline;text-underline-offset:3px}
-    .email-reveal a:hover{text-decoration:none}
 
     /* Footer */
     footer{
@@ -352,7 +314,7 @@
 
       <div class='hero-grid'>
         <div class='hero-content'>
-          <p class='tagline'>I’m a life science and AI focused technical product manager with over a decade of experience building products for scientists. I’m great at finding ways to take specialized research tools that are typically usable only by a few and turning them into products that more scientists can actually use.</p>
+          <p class='tagline'>I’m an AI and life science focused technical product manager with over a decade of experience building products for scientists. I’m great at finding ways to take specialized research tools that are typically usable only by a few and turning them into products that more scientists can actually use.</p>
 
           <div class='now-section'>
             <h2>What I'm Building Now</h2>
@@ -399,7 +361,7 @@
     </div>
     <section id='work'>
       <button class='work-toggle' id='workToggle' aria-expanded='false' aria-controls='workList'>
-        <span>Selected Product Work</span>
+        <span>Some of my Past PM Work</span>
         <span class='chevron' aria-hidden='true'></span>
       </button>
       <div class='work-list' id='workList' data-open='false'>
@@ -428,20 +390,6 @@
       </div>
     </section>
 
-    <section id='contact'>
-      <h2>Get in Touch</h2>
-      <div class='contact-content'>
-        <p>I'm always interested in talking about AI for biology, computational drug discovery, or building products for scientists.</p>
-        <button class='email-btn' id='emailBtn2'>
-          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><rect x='2' y='4' width='20' height='16' rx='2'/><path d='M22 6l-10 7L2 6'/></svg>
-          Show email
-        </button>
-        <div class='email-reveal' id='emailReveal2'>
-          <a href='mailto:domen.jemec@gmail.com'>domen.jemec@gmail.com</a>
-        </div>
-      </div>
-    </section>
-
     <footer>
       <div>&copy; <span id='year'></span> Domen Jemec</div>
       <div><a href='#'>I'm lazy, take me back to the top</a></div>
@@ -452,10 +400,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('emailBtn').addEventListener('click', function(){
       alert('domen.jemec@gmail.com');
-    });
-    document.getElementById('emailBtn2').addEventListener('click', function(){
-      var el = document.getElementById('emailReveal2');
-      el.style.display = el.style.display === 'block' ? 'none' : 'block';
     });
     document.getElementById('workToggle').addEventListener('click', function(){
       var list = document.getElementById('workList');
